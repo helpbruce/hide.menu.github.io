@@ -161,7 +161,7 @@ body {
   #menu-text {
     
     opacity: 0;
-    animation: fadeInAnimation 3s forwards; 
+    animation: fadeInAnimation 5s forwards; 
   }
   
   @keyframes fadeInAnimation {
