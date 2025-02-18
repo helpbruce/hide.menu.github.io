@@ -1,0 +1,33 @@
+<script src="script.js"></script>
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Меню ресторана HIDE</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+</head>
+<body>
+    <header>
+        <h1>Меню ресторана HIDE</h1>
+    </header>
+    <section id="appetizers">
+        <h2>Закуски</h2>
+        <div class="item">
+            <img src="images/item1.jpg" alt="Блюдо 1">
+            <p>Название блюда</p>
+            <p>Цена: 500₽</p>
+        </div>
+        <!-- Дополнительные блюда -->
+    </section>
+    <section id="main-dishes">
+        <h2>Основные блюда</h2>
+        <!-- Аналогичный блок -->
+    </section>
+    <footer>
+        <p>Ресторан HIDE © 2025</p>
+    </footer>
+</body>
+</html>
