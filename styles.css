@@ -245,6 +245,6 @@ margin: 0;
 body {
     background-image: url('https://github.com/helpbruce/hide.menu.github.io/blob/main/img/%D0%91%D0%B5%D0%B7%20%D0%B8%D0%BC%D0%B5%D0%BD%D0%B8-1.jpg?raw=true');
     background-repeat: repeat; /* Делает картинку повторяющейся по всей странице */
-    background-size: auto; /* Можно установить size если нужно изменить размер */
+    background-size: contain; /* Можно установить size если нужно изменить размер */
     background-position: center; /* Можно установить позицию фона */
 }
