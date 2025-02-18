@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Restaurant Menu</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noe+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noe+Display&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Noe Display', serif;
       background-color: #f7e7ce;
       margin: 0;
       padding: 20px;
+      color: #4E3629;
     }
     .container {
       max-width: 800px;
@@ -18,13 +19,14 @@
     }
     h1 {
       text-align: center;
-      color: #333;
+      color: #4E3629;
+      margin-bottom: 5cm; /* Отступ 5 см от заголовка до меню */
     }
     .menu-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #fff;
+      background: #f7e7ce;
       margin-bottom: 10px;
       padding: 10px;
       border: 1px solid #ddd;
@@ -33,32 +35,37 @@
     .menu-item h3 {
       margin: 0;
       font-size: 18px;
-      color: #555;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      cursor: pointer;
     }
     .menu-item p {
       margin: 0;
-      color: #888;
+      font-family: 'Playfair Display', serif; /* Изменен шрифт на тот же, что и у названий блюд */
+      color: #4E3629;
     }
     .menu-item button {
-      background-color: #28a745;
+      background-color: #DFC9A8;
       border: none;
-      color: white;
+      color: #222;
+      font-family: 'Noe Display', serif;
       padding: 10px;
       border-radius: 4px;
       cursor: pointer;
     }
     .menu-item button:hover {
-      background-color: #218838;
+      background-color: #c4ac8d;
     }
     .cart {
       margin-top: 20px;
       padding: 10px;
-      background: #fff;
+      background: #f7e7ce; /* Изменен фон на тот же, что и основной фон страницы */
       border: 1px solid #ddd;
       border-radius: 4px;
     }
     .cart h2 {
       margin-top: 0;
+      font-family: 'Playfair Display', serif; /* Изменен шрифт на тот же, что и у названий блюд */
     }
     .cart ul {
       list-style: none;
@@ -72,92 +79,239 @@
       border-bottom: none;
     }
     .cart li button {
-      background-color: #dc3545;
+      background-color: #DFC9A8; /* Кнопка как у add */
       border: none;
-      color: white;
+      color: #222;
       padding: 5px;
       border-radius: 4px;
       cursor: pointer;
+      font-family: 'Noe Display', serif;
+      text-transform: lowercase;
+      margin-right: 10px; /* Увеличил пробел между кнопкой и ценой */
     }
     .cart li button:hover {
-      background-color: #c82333;
+      background-color: #c4ac8d;
+    }
+    #total-price {
+      font-family: 'Playfair Display', serif; /* Изменен шрифт для общей суммы */
+    }
+    .cart li p, .cart li h3 {
+      font-family: 'Playfair Display', serif; /* Установлен шрифт такой же, как у названий блюд */
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 600px;
+      max-height: 80%;
+      overflow-y: auto;
+    }
+    .modal img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .close-btn {
+      background: red;
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Restaurant Menu</h1>
-    
     <div id="menu">
-      <div class="menu-item" data-name="Pizza Margherita" data-price="799">
+      <div class="menu-item" data-name="Pizza Margherita" data-price="799" data-description="A delicious Italian pizza topped with fresh mozzarella, tomatoes, and basil." data-img="https://example.com/images/pizza.jpg">
         <div>
-          <h3>Pizza Margherita</h3>
-          <p>Price: 799 ₽</p>
+          <h3 onclick="openModal(this)">Pizza Margherita</h3>
+          <p>799 UE</p>
         </div>
-        <button onclick="addToCart(this)">Add</button>
+        <button onclick="addToCart(this)">add</button>
       </div>
-      <div class="menu-item" data-name="Classic Burger" data-price="599">
+      <div class="menu-item" data-name="Classic Burger" data-price="599" data-description="A juicy classic burger with lettuce, tomato, and a secret sauce." data-img="https://example.com/images/burger.jpg">
         <div>
-          <h3>Classic Burger</h3>
-          <p>Price: 599 ₽</p>
+          <h3 onclick="openModal(this)">Classic Burger</h3>
+          <p>599 UE</p>
         </div>
-        <button onclick="addToCart(this)">Add</button>
+        <button onclick="addToCart(this)">add</button>
       </div>
-      <div class="menu-item" data-name="Caesar Salad" data-price="499">
+      <div class="menu-item" data-name="Caesar Salad" data-price="499" data-description="Crispy romaine lettuce with Caesar dressing, croutons, and parmesan." data-img="https://example.com/images/salad.jpg">
         <div>
-          <h3>Caesar Salad</h3>
-          <p>Price: 499 ₽</p>
+          <h3 onclick="openModal(this)">Caesar Salad</h3>
+          <p>499 UE</p>
         </div>
-        <button onclick="addToCart(this)">Add</button>
+        <button onclick="addToCart(this)">add</button>
       </div>
-    </div>
-    
-    <div class="cart">
-      <h2>Cart</h2>
-      <ul id="cart-items">
-        <!-- Selected items will appear here -->
-      </ul>
-      <p id="total-price">Total: 0 ₽</p>
+      <div class="menu-item" data-name="Grilled Salmon" data-price="1200" data-description="Freshly grilled salmon fillet served with lemon and dill." data-img="https://example.com/images/salmon.jpg">
+        <div>
+          <h3 onclick="openModal(this)">Grilled Salmon</h3>
+          <p>1200 UE</p>
+        </div>
+        <button onclick="addToCart(this)">add</button>
+      </div>
+      <div class="menu-item" data-name="Vegetable Stir Fry" data-price="450" data-description="A healthy stir fry with fresh vegetables in a savory sauce." data-img="https://example.com/images/stirfry.jpg">
+        <div>
+          <h3 onclick="openModal(this)">Vegetable Stir Fry</h3>
+          <p>450 UE</p>
+        </div>
+        <button onclick="addToCart(this)">add</button>
+      </div>
+      <div class="menu-item" data-name="Spaghetti Carbonara" data-price="950" data-description="Classic Italian pasta with creamy sauce, pancetta, and parmesan." data-img="https://example.com/images/carbonara.jpg">
+        <div>
+          <h3 onclick="openModal(this)">Spaghetti Carbonara</h3>
+          <p>950 UE</p>
+        </div>
+        <button onclick="addToCart(this)">add</button>
+      </div>
+      <div class="menu-item" data-name="Beef Steak" data-price="1500" data-description="Grilled beef steak served with a side of roasted vegetables." data-img="https://example.com/images/steak.jpg">
+        <div>
+          <h3 onclick="openModal(this)">Beef Steak</h3>
+          <p>1500 UE</p>
+        </div>
+        <button onclick="addToCart(this)">add</button>
+      </div>
+      <div class="menu-item" data-name="Chicken Wings" data-price="700" data-description="Crispy chicken wings with a spicy BBQ sauce." data-img="https://example.com/images/wings.jpg">
+        <div>
+          <h3 onclick="openModal(this)">Chicken Wings</h3>
+          <p>700 UE</p>
+        </div>
+        <button onclick="addToCart(this)">add</button>
+      </div>
+      <div class="menu-item" data-name="Vegetarian Pizza" data-price="799" data-description="Delicious vegetarian pizza topped with fresh vegetables and cheese." data-img="https://example.com/images/veggie-pizza.jpg">
+        <div>
+          <h3 onclick="openModal(this)">Vegetarian Pizza</h3>
+          <p>799 UE</p>
+        </div>
+        <button onclick="addToCart(this)">add</button>
+      </div>
+      <div class="menu-item" data-name="Mushroom Soup" data-price="350" data-description="Creamy mushroom soup with a rich and savory flavor." data-img="https://example.com/images/soup.jpg">
+        <div>
+          <h3 onclick="openModal(this)">Mushroom Soup</h3>
+          <p>350 UE</p>
+        </div>
+        <button onclick="addToCart(this)">add</button>
+      </div>
+      <div class="menu-item" data-name="Cheeseburger" data-price="650" data-description="Cheeseburger with fresh lettuce, tomato, and a delicious cheese melt." data-img="https://example.com/images/cheeseburger.jpg">
+        <div>
+          <h3 onclick="openModal(this)">Cheeseburger</h3>
+          <p>650 UE</p>
+        </div>
+        <button onclick="addToCart(this)">add</button>
+      </div>
+      <div class="menu-item" data-name="Shrimp Cocktail" data-price="1200" data-description="Shrimp served with tangy cocktail sauce and lemon." data-img="https://example.com/images/shrimp.jpg">
+        <div>
+          <h3 onclick="openModal(this)">Shrimp Cocktail</h3>
+          <p>1200 UE</p>
+        </div>
+        <button onclick="addToCart(this)">add</button>
+      </div>
+      <div class="menu-item" data-name="Tiramisu" data-price="500" data-description="Classic Italian dessert with coffee and mascarpone layers." data-img="https://example.com/images/tiramisu.jpg">
+        <div>
+          <h3 onclick="openModal(this)">Tiramisu</h3>
+          <p>500 UE</p>
+        </div>
+        <button onclick="addToCart(this)">add</button>
+      </div>
     </div>
   </div>
-  
+
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()">X</button>
+      <img id="modal-img" src="" alt="Food Image">
+      <h3 id="modal-name"></h3>
+      <p id="modal-description"></p>
+      <p><strong>Price: <span id="modal-price"></span> UE</strong></p>
+    </div>
+  </div>
+
+  <div class="cart">
+    <h2>Your Cart</h2>
+    <ul id="cart-items">
+      <!-- Items will appear here -->
+    </ul>
+    <p id="total-price">Total: 0 UE</p>
+  </div>
+
   <script>
     let cart = [];
-    
     function addToCart(button) {
-      const menuItem = button.parentElement;
-      const name = menuItem.getAttribute('data-name');
-      const price = parseInt(menuItem.getAttribute('data-price'));
+      const item = button.parentElement;
+      const name = item.getAttribute('data-name');
+      const price = parseInt(item.getAttribute('data-price'));
+      const description = item.getAttribute('data-description');
+      const img = item.getAttribute('data-img');
+
+      const cartItem = {
+        name,
+        price,
+        description,
+        img
+      };
       
-      cart.push({ name, price });
+      cart.push(cartItem);
       updateCart();
     }
-    
+
     function updateCart() {
       const cartItemsContainer = document.getElementById('cart-items');
       cartItemsContainer.innerHTML = '';
-      
-      let total = 0;
-      
-      cart.forEach((item, index) => {
-        total += item.price;
-        const li = document.createElement('li');
-        li.textContent = `${item.name} - ${item.price} ₽ `;
-        
-        const removeBtn = document.createElement('button');
-        removeBtn.textContent = 'Remove';
-        removeBtn.onclick = () => removeFromCart(index);
-        li.appendChild(removeBtn);
-        
-        cartItemsContainer.appendChild(li);
+
+      let totalPrice = 0;
+      cart.forEach(item => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+          <h3>${item.name}</h3>
+          <p>${item.description}</p>
+          <p>${item.price} UE</p>
+          <button onclick="removeFromCart('${item.name}')">remove</button>
+        `;
+        cartItemsContainer.appendChild(listItem);
+        totalPrice += item.price;
       });
-      
-      document.getElementById('total-price').textContent = `Total: ${total} ₽`;
+
+      document.getElementById('total-price').textContent = `Total: ${totalPrice} UE`;
     }
-    
-    function removeFromCart(index) {
-      cart.splice(index, 1);
+
+    function removeFromCart(itemName) {
+      cart = cart.filter(item => item.name !== itemName);
       updateCart();
+    }
+
+    function openModal(element) {
+      const name = element.textContent;
+      const item = document.querySelector(`.menu-item[data-name="${name}"]`);
+      const description = item.getAttribute('data-description');
+      const img = item.getAttribute('data-img');
+      const price = item.getAttribute('data-price');
+
+      document.getElementById('modal-name').textContent = name;
+      document.getElementById('modal-description').textContent = description;
+      document.getElementById('modal-price').textContent = price;
+      document.getElementById('modal-img').src = img;
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
     }
   </script>
 </body>
