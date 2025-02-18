@@ -224,7 +224,7 @@ body {
 #header {
     background-color: rgba(0, 0, 0, 0);
     padding: 10px 20px;
-    position: auto;  /* Фиксируем элемент */
+    position: sticky;  /* Фиксируем элемент */
     top: 0;           /* Прикрепляем его к верхней части экрана */
     left: 50%;        /* Перемещаем шапку на 50% от левого края */
    
