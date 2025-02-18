@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Меню Ресторана</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Menu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noe+Display&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
+      font-family: 'Noe Display', serif;
+      background-color: #f7e7ce;
       margin: 0;
       padding: 20px;
     }
@@ -84,59 +86,53 @@
 </head>
 <body>
   <div class="container">
-    <h1>Меню Ресторана</h1>
+    <h1>Restaurant Menu</h1>
     
     <div id="menu">
-      <div class="menu-item" data-name="Пицца Маргарита" data-price="8.99">
+      <div class="menu-item" data-name="Pizza Margherita" data-price="799">
         <div>
-          <h3>Пицца Маргарита</h3>
-          <p>Цена: $8.99</p>
+          <h3>Pizza Margherita</h3>
+          <p>Price: 799 ₽</p>
         </div>
-        <button onclick="addToCart(this)">Добавить</button>
+        <button onclick="addToCart(this)">Add</button>
       </div>
-      <div class="menu-item" data-name="Бургер Классик" data-price="6.99">
+      <div class="menu-item" data-name="Classic Burger" data-price="599">
         <div>
-          <h3>Бургер Классик</h3>
-          <p>Цена: $6.99</p>
+          <h3>Classic Burger</h3>
+          <p>Price: 599 ₽</p>
         </div>
-        <button onclick="addToCart(this)">Добавить</button>
+        <button onclick="addToCart(this)">Add</button>
       </div>
-      <div class="menu-item" data-name="Салат Цезарь" data-price="5.99">
+      <div class="menu-item" data-name="Caesar Salad" data-price="499">
         <div>
-          <h3>Салат Цезарь</h3>
-          <p>Цена: $5.99</p>
+          <h3>Caesar Salad</h3>
+          <p>Price: 499 ₽</p>
         </div>
-        <button onclick="addToCart(this)">Добавить</button>
+        <button onclick="addToCart(this)">Add</button>
       </div>
-      <!-- Добавь ещё блюда по желанию -->
     </div>
     
     <div class="cart">
-      <h2>Корзина</h2>
+      <h2>Cart</h2>
       <ul id="cart-items">
-        <!-- Здесь будут отображаться выбранные блюда -->
+        <!-- Selected items will appear here -->
       </ul>
-      <p id="total-price">Итого: $0.00</p>
+      <p id="total-price">Total: 0 ₽</p>
     </div>
   </div>
   
   <script>
-    // Массив для хранения блюд в корзине
     let cart = [];
     
-    // Функция добавления блюда в корзину
     function addToCart(button) {
       const menuItem = button.parentElement;
       const name = menuItem.getAttribute('data-name');
-      const price = parseFloat(menuItem.getAttribute('data-price'));
+      const price = parseInt(menuItem.getAttribute('data-price'));
       
-      // Добавляем блюдо в массив
       cart.push({ name, price });
-      
       updateCart();
     }
     
-    // Обновление корзины
     function updateCart() {
       const cartItemsContainer = document.getElementById('cart-items');
       cartItemsContainer.innerHTML = '';
@@ -146,21 +142,19 @@
       cart.forEach((item, index) => {
         total += item.price;
         const li = document.createElement('li');
-        li.textContent = `${item.name} - $${item.price.toFixed(2)} `;
+        li.textContent = `${item.name} - ${item.price} ₽ `;
         
-        // Кнопка удаления блюда из корзины
         const removeBtn = document.createElement('button');
-        removeBtn.textContent = 'Удалить';
+        removeBtn.textContent = 'Remove';
         removeBtn.onclick = () => removeFromCart(index);
         li.appendChild(removeBtn);
         
         cartItemsContainer.appendChild(li);
       });
       
-      document.getElementById('total-price').textContent = `Итого: $${total.toFixed(2)}`;
+      document.getElementById('total-price').textContent = `Total: ${total} ₽`;
     }
     
-    // Функция удаления блюда из корзины
     function removeFromCart(index) {
       cart.splice(index, 1);
       updateCart();
