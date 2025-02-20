@@ -12,9 +12,10 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  background-color:  #F7E7CE;
-  z-index: 9999; /* Увеличил z-index */
-  padding: 10px 0; /* Добавил отступы */
+  background-color: #F7E7CE;
+  z-index: 9999;
+  line-height: 0.5; 
+  padding: 0.; /* Уменьшаем отступы сверху и снизу */
 }
 .header h1 {
   text-align: center;
@@ -33,6 +34,7 @@ body {
   background-color: transparent; /* Прозрачный фон */
   border: none; /* Убираем границу */
   box-shadow: none; 
+  margin-top: 80px; 
 
 }
 h2 {
