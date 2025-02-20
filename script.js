@@ -74,15 +74,17 @@ function toggleSelection(event) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const overlay = document.getElementById('hide-overlay');
-  const content = document.querySelector('.content');
-  document.body.style.opacity = '0'; // Начальное состояние - скрыть контент
-  content.style.display = 'none'; // Скрыть контент
+    const overlay = document.getElementById('hide-overlay');
+    const content = document.querySelector('.content');
 
-  // Через 15 секунд убираем надпись "HIDE" и показываем основной контент
-  setTimeout(() => {
-      overlay.classList.add('hidden');
-      content.style.display = 'block';
-      document.body.style.opacity = '1'; // Плавное проявление контента
-  }, 4000); // 15000 миллисекунд = 15 секунд
+    // Устанавливаем начальное состояние
+    overlay.style.display = 'flex';
+    content.style.display = 'none'; // Скрываем контент
+
+    // Через 15 секунд убираем надпись "HIDE" и показываем основной контент
+    setTimeout(() => {
+        overlay.classList.add('hidden');
+        content.style.display = 'block';
+        document.body.style.opacity = '1'; // Плавное проявление контента
+    }, 15000); // 15000 миллисекунд = 15 секунд
 });
