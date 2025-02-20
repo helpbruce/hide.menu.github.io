@@ -7,6 +7,47 @@ body {
   background-position: 25% -86%;
   background-attachment: scroll;
 }
+
+body {
+  opacity: 1; /* Устанавливаем начальную видимость */
+  transition: opacity 4s ease-in-out; /* Постепенное проявление в течение 5 секунд */
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #F7E7CE;
+  z-index: 10000; /* Высокий z-index чтобы надпись MENU всегда была видна */
+  line-height: 0.5; 
+  padding: 0.; /* Уменьшаем отступы сверху и снизу */
+}
+
+#hide-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #F7E7CE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Georgia', serif;
+  font-size: 72px;
+  color: #333;
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 2s ease-in-out; /* Постепенное исчезновение */
+}
+
+#hide-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
 .header {
   position: fixed;
   top: 0;
@@ -63,9 +104,6 @@ h2 {
   box-shadow: none; 
 }
 
-.menu-item.selected {
-  background-color: #dcdcdc;
-}
 .menu-item h4 {
   margin: 0;
   font-size: 18px;
@@ -99,19 +137,59 @@ button:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background-image: url('https://github.com/helpbruce/hide.menu.github.io/blob/main/img/322.png?raw=true');
+  background-size: cover;
+  background-position: center;
   padding: 20px;
   box-shadow: 0 0 20px rgba(0,0,0,0.5);
   border-radius: 10px;
   text-align: center;
   z-index: 2000;
+  max-width: 600px;
+  width: 100%;
 }
+
 .order-summary-modal h2 {
   margin-bottom: 20px;
+  font-size: 24px;
+  font-family: 'Georgia', serif;
 }
+
+.order-summary-item {
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-family: 'Georgia', serif;
+  text-align: center; /* Текст по центру */
+}
+
+.order-summary-item h4 {
+  margin: 0;
+  font-size: 18px;
+  font-family: 'Georgia', serif;
+}
+
+.order-summary-item p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  color: #666;
+}
+
 .order-summary-modal button {
   margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
+
+.order-summary-modal button:hover {
+  background-color: #555;
+}
+
 .modal-overlay {
   display: none;
   position: fixed;
@@ -121,4 +199,37 @@ button:hover {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1500;
+}
+.menu-item.dimmed h4, .menu-item.dimmed p {
+  opacity: 0.5; /* Полупрозрачный текст */
+}
+
+.menu-item.selected {
+  background-color: #dcdcdc; /* Цвет фона выбранного элемента */
+  color: #333; /* Цвет текста выбранного элемента */
+  background-color: #dcdcdc;
+}
+
+.proceed-to-order-button:disabled {
+  background-color: #ccc; /* Серый фон для неактивной кнопки */
+  cursor: not-allowed;
+}
+
+.proceed-to-order-button[disabled]:hover::after {
+  content: "Выберите блюдо из каждой позиции";
+  display: block;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(247, 231, 206, 0.9); /* Полупрозрачный фон в тон основного цвета */
+  color: #333; /* Цвет текста в тон основного цвета */
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 28px; /* Уменьшенный размер шрифта */
+  font-family: 'Georgia', serif; /* Шрифт в тон основного текста */
+  z-index: 3000;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Тень для четкости */
 }
