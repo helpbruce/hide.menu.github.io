@@ -86,5 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.classList.add('hidden');
         content.style.display = 'block';
         document.body.style.opacity = '1'; // Плавное проявление контента
-    }, 15000); // 15000 миллисекунд = 15 секунд
+    }, 5000); // 5 секунд
 });
+
