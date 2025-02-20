@@ -72,19 +72,19 @@ function toggleSelection(event) {
   event.currentTarget.classList.remove('dimmed'); // Убираем полупрозрачность с выбранного элемента
   event.currentTarget.classList.add('selected');
 }
-
 document.addEventListener('DOMContentLoaded', () => {
     const overlay = document.getElementById('hide-overlay');
     const content = document.querySelector('.content');
 
     // Устанавливаем начальное состояние
     overlay.style.display = 'flex';
-    content.style.opacity = '0'; // Скрываем контент
+    content.classList.remove('visible'); // Убираем класс видимости
 
     // Через 15 секунд убираем надпись "HIDE" и показываем основной контент
     setTimeout(() => {
         overlay.classList.add('hidden');
-        content.style.opacity = '1'; // Плавное проявление контента
+        content.classList.add('visible'); // Применяем класс видимости для плавного проявления контента
     }, 5000); // 15000 миллисекунд = 15 секунд
 });
+
 
