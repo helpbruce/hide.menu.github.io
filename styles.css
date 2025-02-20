@@ -22,6 +22,7 @@ body {
     z-index: 10000; /* Высокий z-index чтобы надпись MENU всегда была видна */
     line-height: 0.5; 
     padding: 0; /* Уменьшаем отступы сверху и снизу */
+    pointer-events: none; /* Отключаем события указателя */
 }
 
 #hide-overlay {
@@ -42,17 +43,16 @@ body {
     visibility: visible;
     transition: opacity 2s ease-in-out; /* Постепенное исчезновение */
 }
-
 #hide-overlay.hidden {
     opacity: 0;
     visibility: hidden;
     transition: opacity 2s ease-in-out, visibility 0s 2s; /* Задержка видимости */
 }
+
 .content {
-    display: none; /* Изначально скрываем контент */
+    opacity: 0; /* Скрываем контент изначально */
+    transition: opacity 5s ease-in-out; /* Плавное проявление контента */
 }
-
-
 .header {
   position: fixed;
   top: 0;
