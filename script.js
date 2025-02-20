@@ -79,13 +79,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Устанавливаем начальное состояние
     overlay.style.display = 'flex';
-    content.style.display = 'none'; // Скрываем контент
+    content.style.opacity = '0'; // Скрываем контент
 
     // Через 15 секунд убираем надпись "HIDE" и показываем основной контент
     setTimeout(() => {
         overlay.classList.add('hidden');
-        content.style.display = 'block';
-        document.body.style.opacity = '1'; // Плавное проявление контента
-    }, 5000); // 5 секунд
+        content.style.opacity = '1'; // Плавное проявление контента
+    }, 5000); // 15000 миллисекунд = 15 секунд
 });
 
