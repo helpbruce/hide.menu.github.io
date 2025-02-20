@@ -1,252 +1,122 @@
 body {
-    font-family: 'Noe Display', serif;
-    background-color: hsla(0, 0%, 100%, 0);
-    margin: 0;
-    padding: 20px;
-    color: #4E3629;
-  }
-  .container {
-    max-width: 800px;
-    margin: auto;
-  }
-  h1 {
-    text-align: center;
-    color: #4E3629;
-    font-size: 320%;
-  }
-  h2 {
-    text-align: center;
-    color: #4E3629;
-    font-size: 400%;
-  }
-  .menu-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: hsla(0, 0%, 100%, 0);
-    margin-bottom: 10px;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  .menu-item h3 {
-    margin: 0;
-    font-size: 18px;
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-  }
-  .menu-item p {
-    margin: 0;
-    font-family: 'Playfair Display', serif;
-    color: #4E3629;
-  }
-  .menu-item button {
-    background-color: hsla(0, 0%, 100%, 0);
-    border: none;
-    color: #222;
-    font-family: 'Noe Display', serif;
-    padding: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  .menu-item button:hover {
-    background-color: hsla(0, 0%, 100%, 0);
-  }
-  .cart {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: hsla(0, 0%, 100%, 0);
-    border: none;
-    border-radius: 4px;
-  }
-  .cart h2 {
-    margin-top: 0;
-    font-family: 'Playfair Display', serif;
-    background-color: hsla(0, 0%, 100%, 0);
-  }
-  .cart ul {
-    list-style: none;
-    padding-left: 0;
-    background-color: hsla(0, 0%, 100%, 0);
-  }
-  .cart li {
-    padding: 5px 0;
-    background-color: hsla(0, 0%, 100%, 0);
-  }
-  .cart li:last-child {
-    border-bottom: none;
-  }
-  .cart li button {
-    background-color: hsla(0, 0%, 100%, 0);
-    border: none;
-    color: #222;
-    padding: 5px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-family: 'Noe Display', serif;
-    text-transform: lowercase;
-    margin-right: 10px;
-  }
-  .cart li button:hover {
-    background-color: #c4ac8d;
-  }
-  #total-price {
-    font-family: 'Playfair Display', serif;
-  }
-  .cart li p, .cart li h3 {
-    font-family: 'Playfair Display', serif;
-  }
-  .popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: none;
-    justify-content: center;
-    align-items: center;
-  }
-  .popup-content {
-    background-color: hsla(0, 0%, 100%, 0);
-    padding: 20px;
-    border-radius: 4px;
-    text-align: center;
-    max-width: 600px;
-  }
-  .popup-content {
-    color: #000000; /* Измени на нужный цвет */
-  }
-  .popup-content img {
-    width: 100%;
-    max-height: 300px;
-    object-fit: cover;
-    border-radius: 4px;
-  }
-  .popup-content h3 {
-    font-family: 'Playfair Display', serif;
-    margin: 10px 0;
-  }
-  .popup-content p {
-    font-family: 'Playfair Display', serif;
-  }
-  .popup-content button {
-    background-color: hsla(0, 0%, 100%, 0);
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-family: 'Noe Display', serif;
-    border-radius: 4px;
-    margin-top: 20px;
-  }
-  .popup-content button:hover {
-    background-color: #c4ac8d;
-  }
-  #hide-text {
-    opacity: 1;
-    animation: fadeOut 12s forwards;
-  }
-  
-  @keyframes fadeOut {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
+  font-family: 'Times New Roman', serif;
+  background-image: url('https://github.com/helpbruce/hide.menu.github.io/blob/main/img/333333%D0%B8%D1%8F.png?raw=true');
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-size: contain;
+  background-position: 25% -86%;
+  background-attachment: scroll;
+}
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color:  #F7E7CE;
+  z-index: 9999; /* Увеличил z-index */
+  padding: 10px 0; /* Добавил отступы */
+}
+.header h1 {
+  text-align: center;
+  font-family: 'Georgia', serif;
+  font-size: 36px;
+  color: #333;
+  margin: 20px 0;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  background-color: transparent; /* Прозрачный фон */
+  border: none; /* Убираем границу */
+  box-shadow: none; 
 
-
-  
-  #menu-text {
-    
-    opacity: 0;
-    animation: fadeInAnimation 3s forwards; 
-  }
-  
-  @keyframes fadeInAnimation {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  .menu-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .add-btn {
-    margin-left: 10px;
-    padding: 5px 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .add-btn.active {
-    background-color: #388E3C; /* Темнее на полтона */
-  }
-  
-  .counter {
-    margin-left: 10px;
-  }
-  
-  .total {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    border-radius: 5px;
-  }
-  
-  .confirm-order {
-    background-color: rgba(0, 0, 0, 0.7);
-    border: none;
-    color: #FF9800;
-    padding: 5px 15px;
-    cursor: pointer;
-  }
-  
-  .confirm-order:hover {
-    background-color: #FF5722;
-  }
-
-  /* Стили для шапки */
-#header {
-    background-color: rgba(0, 0, 0, 0);
-    padding: 10px 20px;
-    position: -webkit-sticky;  /* Фиксируем элемент */
-    top: 0;           /* Прикрепляем его к верхней части экрана */
-    left: 50%;        /* Перемещаем шапку на 50% от левого края */
-   
-    width: auto;      /* Даем ширину по содержимому */
-    z-index: 9000;      /* Обеспечиваем, чтобы шапка всегда была поверх контента */
+}
+h2 {
+  text-align: center;
+  font-family: 'Georgia', serif;
+  font-size: 24px;
+  color: #444;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.menu-section {
+  margin-bottom: 30px;
+  text-align: center;
+  background-color: transparent; /* Прозрачный фон */
+  border: none; /* Убираем границу */
+  box-shadow: none; 
+}
+.menu-item {
+  padding: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-align: center;
+  background-color: transparent; /* Прозрачный фон */
+  border: none; /* Убираем границу */
+  box-shadow: none; 
 }
 
-
-
-
-/* Добавляем отступ сверху для контента, чтобы меню не перекрывало его */
-#content {
-margin: 0;
-    font-size: 24px;
-    padding-left: 20px
+.menu-item.selected {
+  background-color: #dcdcdc;
 }
-
-
-
-body {
-    background-image: url('https://github.com/helpbruce/hide.menu.github.io/blob/main/img/%D0%91%D0%B5%D0%B7%20%D0%B8%D0%BC%D0%B5%D0%BD%D0%B8-1.jpg?raw=true');
-    background-repeat: repeat; /* Делает картинку повторяющейся по всей странице */
-    background-size: contain; /* Можно установить size если нужно изменить размер */
-    background-position: center; /* Можно установить позицию фона */
+.menu-item h4 {
+  margin: 0;
+  font-size: 18px;
+  font-family: 'Georgia', serif;
+}
+.menu-item p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  color: #666;
+}
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+button {
+  padding: 10px 20px;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+button:hover {
+  background-color: #555;
+}
+.order-summary-modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  border-radius: 10px;
+  text-align: center;
+  z-index: 2000;
+}
+.order-summary-modal h2 {
+  margin-bottom: 20px;
+}
+.order-summary-modal button {
+  margin-top: 20px;
+}
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1500;
 }
