@@ -75,16 +75,16 @@ function toggleSelection(event) {
 document.addEventListener('DOMContentLoaded', () => {
     const overlay = document.getElementById('hide-overlay');
     const content = document.querySelector('.content');
+    const body = document.body;
 
     // Устанавливаем начальное состояние
     overlay.style.display = 'flex';
     content.classList.remove('visible'); // Убираем класс видимости
 
-    // Через 15 секунд убираем надпись "HIDE" и показываем основной контент
+    // Через 15 секунд убираем надпись "HIDE", показываем основной контент и фон
     setTimeout(() => {
         overlay.classList.add('hidden');
         content.classList.add('visible'); // Применяем класс видимости для плавного проявления контента
+        body.classList.add('loaded'); // Добавляем фоновое изображение
     }, 5000); // 15000 миллисекунд = 15 секунд
 });
-
-
