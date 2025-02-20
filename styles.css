@@ -11,16 +11,6 @@ body {
 body {
     opacity: 1;
     transition: opacity 5s ease-in-out; /* Постепенное проявление в течение 5 секунд */
-    background-image: none; /* Убираем фоновое изображение по умолчанию */
-}
-
-body.loaded {
-    background-image: url('https://github.com/helpbruce/hide.menu.github.io/blob/main/img/333333%D0%B8%D1%8F.png?raw=true'); /* Фоновое изображение */
-    background-repeat: repeat;
-    background-attachment: fixed;
-    background-size: contain;
-    background-position: 25% -86%;
-    background-attachment: scroll;
 }
 
 .header {
@@ -50,7 +40,7 @@ body.loaded {
     z-index: 9999;
     opacity: 1;
     visibility: visible;
-    transition: opacity 2s ease-in-out; /* Постепенное исчезновение */
+    transition: opacity 2s ease-in-out; /* Постепенное исчезновение за 2 секунды */
 }
 
 #hide-overlay.hidden {
@@ -68,7 +58,6 @@ body.loaded {
     display: block;
     opacity: 1; /* Применяем класс видимости для отображения контента */
 }
-
 
 .header {
   position: fixed;
