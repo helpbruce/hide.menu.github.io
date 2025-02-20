@@ -9,8 +9,18 @@ body {
 }
 
 body {
-    opacity: 1; /* Устанавливаем начальную видимость для body */
+    opacity: 1;
     transition: opacity 5s ease-in-out; /* Постепенное проявление в течение 5 секунд */
+    background-image: none; /* Убираем фоновое изображение по умолчанию */
+}
+
+body.loaded {
+    background-image: url('https://github.com/helpbruce/hide.menu.github.io/blob/main/img/333333%D0%B8%D1%8F.png?raw=true'); /* Фоновое изображение */
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: contain;
+    background-position: 25% -86%;
+    background-attachment: scroll;
 }
 
 .header {
@@ -58,6 +68,7 @@ body {
     display: block;
     opacity: 1; /* Применяем класс видимости для отображения контента */
 }
+
 
 .header {
   position: fixed;
