@@ -81,10 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.style.display = 'flex';
     content.classList.remove('visible'); // Убираем класс видимости
 
-    // Через 15 секунд убираем надпись "HIDE", показываем основной контент и фон
+    // Через 5 секунд убираем надпись "HIDE", показываем основной контент и фон
     setTimeout(() => {
         overlay.classList.add('hidden');
         content.classList.add('visible'); // Применяем класс видимости для плавного проявления контента
         body.classList.add('loaded'); // Добавляем фоновое изображение
-    }, 5000); // 15000 миллисекунд = 15 секунд
+    }, 5000); // 5000 миллисекунд = 5 секунд
 });
