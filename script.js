@@ -25,28 +25,35 @@ function showOrderSummary() {
   const selectedItems = document.querySelectorAll('.menu-item.selected');
   let orderSummary = document.querySelector('.order-summary-modal');
   let overlay = document.querySelector('.modal-overlay');
-  let summaryHTML = '<h2>Ваш заказ</h2>';
+  let summaryHTML = '<h2>Your Order</h2>';
   
   selectedItems.forEach(item => {
     summaryHTML += '<div class="order-summary-item"><h4>' + item.getElementsByTagName('h4')[0].innerText + '</h4></div>';
   });
-  
+
   if (selectedItems.length === document.querySelectorAll('.menu-section').length) {
-    summaryHTML += '<button class="proceed-to-order-button" onclick="proceedToPayment()">Оплатить</button>';
+    summaryHTML += '<p class="total-price">Total: $100</p>';
+    summaryHTML += '<button class="button-52" role="button" onclick="proceedToPayment()">Pay</button>';
   } else {
-    summaryHTML += '<p>Выберите блюдо из каждой позиции</p>';
-    summaryHTML += '<button class="proceed-to-order-button" disabled>Оплатить</button>'; // Добавляем неактивную кнопку
+    summaryHTML += '<button class="button-52" role="button" onclick="proceedToPayment()">Pay</button>';
   }
   
   orderSummary.innerHTML = summaryHTML;
   orderSummary.style.display = 'block';
   overlay.style.display = 'block';
-  updateOrderButtonState();
 }
 
 function proceedToPayment() {
-  // Здесь вы можете добавить код для перенаправления на платежную систему
-  alert('Перенаправление к платежной системе...');
+  const selectedItems = document.querySelectorAll('.menu-item.selected');
+  const requiredPositions = document.querySelectorAll('.menu-section').length;
+
+  if (selectedItems.length === requiredPositions) {
+    // Здесь вы можете добавить код для перенаправления на платежную систему
+    alert('Redirecting to payment system...');
+  } else {
+    // Показать сообщение, если не выбраны все блюда
+    alert('Choose a dish from each position');
+  }
 }
 
 function closeOrderSummary(event) {
