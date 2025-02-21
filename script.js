@@ -1,113 +1,333 @@
-function toggleSelection(event) {
-  const menuItems = event.currentTarget.parentElement.getElementsByClassName('menu-item');
-  for (let item of menuItems) {
-    item.classList.remove('selected');
-    item.classList.add('dimmed');
-  }
-  event.currentTarget.classList.remove('dimmed');
-  event.currentTarget.classList.add('selected');
-  updateOrderButtonState();
+body {
+  font-family: 'Times New Roman', serif;
+  background-image: url('https://github.com/helpbruce/hide.menu.github.io/blob/main/img/333333%D0%B8%D1%8F.png?raw=true');
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-size: contain;
+  background-position: 25% -86%;
+  background-attachment: scroll;
 }
 
-function updateOrderButtonState() {
-  const selectedItems = document.querySelectorAll('.menu-item.selected');
-  const orderButton = document.querySelector('.proceed-to-order-button');
-  const requiredPositions = document.querySelectorAll('.menu-section').length;
-
-  if (selectedItems.length === requiredPositions) {
-    orderButton.disabled = false;
-  } else {
-    orderButton.disabled = true;
-  }
+.header {                                /*  */
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #F7E7CE;
+  z-index: 9999;
+  line-height: 2;
+  padding: 0;
+  color: #4E3629;
 }
 
-function showOrderSummary() {
-  const selectedItems = document.querySelectorAll('.menu-item.selected');
-  let orderSummary = document.querySelector('.order-summary-modal');
-  let overlay = document.querySelector('.modal-overlay');
-
-  let summaryHTML = `<div id="invoice-POS">
-                      <center id="top">
-                        <div class="logo"></div>
-                        <div class="info"> 
-                          <h2>Restaurant Name</h2>
-                        </div>
-                      </center>
-                      <div id="mid">
-                        <div class="info">
-                          <h2>Contact Info</h2>
-                          <p> 
-                              Address: street city, state 0000</br>
-                              Email: restaurant@example.com</br>
-                              Phone: 123-456-7890</br>
-                          </p>
-                        </div>
-                      </div>
-                      <div id="bot">
-                        <div id="table">
-                          <table>
-                            <tr class="tabletitle">
-                              <td class="item"><h2>Item</h2></td>
-                              <td class="Hours"><h2>Qty</h2></td>
-                              <td class="Rate"><h2>Sub Total</h2></td>
-                            </tr>`;
-  
-  selectedItems.forEach(item => {
-    summaryHTML += `<tr class="service">
-                      <td class="tableitem"><p class="itemtext">${item.getElementsByTagName('h4')[0].innerText}</p></td>
-                      <td class="tableitem"><p class="itemtext">1</p></td>
-                      <td class="tableitem"><p class="itemtext">$100.00</p></td>
-                    </tr>`;
-  });
-  
-  summaryHTML += `<tr class="tabletitle">
-                    <td></td>
-                    <td class="Rate"><h2>Total</h2></td>
-                    <td class="payment"><h2>$100.00</h2></td>
-                  </tr>
-                </table>
-              </div>
-              <div id="legalcopy">
-                <p class="legal"><strong>Thank you for your business!</strong> Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices.</p>
-              </div>
-            </div>
-          </div>`;
-
-  orderSummary.innerHTML = summaryHTML;
-  orderSummary.style.display = 'block';
-  overlay.style.display = 'block';
+.header h1 {
+  text-align: center;
+  font-family: 'Noe Display', serif;
+  font-size: 36px;
+  color: #333;
+  margin: 20px 0;
 }
 
-function closeOrderSummary(event) {
-  let orderSummary = document.querySelector('.order-summary-modal');
-  let overlay = document.querySelector('.modal-overlay');
-  
-  if (event.target === overlay) {
-    orderSummary.style.display = 'none';
-    overlay.style.display = 'none';
-  }
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  margin-top: 80px;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const menuItems = document.querySelectorAll('.menu-item');
-  
-  menuItems.forEach(item => {
-    item.addEventListener('click', toggleSelection);
-  });
-  
-  document.querySelector('.modal-overlay').addEventListener('click', closeOrderSummary);
-  updateOrderButtonState();
-});
-
-function proceedToPayment() {
-  const selectedItems = document.querySelectorAll('.menu-item.selected');
-  const requiredPositions = document.querySelectorAll('.menu-section').length;
-
-  if (selectedItems.length === requiredPositions) {
-    // Здесь вы можете добавить код для перенаправления на платежную систему
-    alert('Redirecting to payment system...');
-  } else {
-    // Показать сообщение, если не выбраны все блюда
-    alert('Choose a dish from each position');
-  }
+h2 {                                    /* Категории меню */
+  text-align: center;
+  font-size: 27px; 
+  color: #444;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;  
 }
+
+
+.menu-section {
+  margin-bottom: 30px;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.menu-item {
+  padding: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  color: #4E3629;
+}
+
+.menu-item h4 {
+  margin: 0;
+  font-size: 28px;
+  font-family: 'Great Vibes';
+  font-weight: lighter; 
+  font-style: italic; 
+  letter-spacing: 1.3px; 
+  color: #4E3629;
+  
+}
+
+.menu-item p {             /* Описание блюд */
+  margin: 5px 0 0;
+  font-size: 11px;
+  color: #666;
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+  font-weight: lighter; 
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+button {                     /* Proceed to Payment */       
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 1px solid black;
+  border-top: none; 
+  border-left: none; 
+  border-right: none; 
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  font-style: italic; 
+}
+
+.order-summary-modal { 
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url('https://github.com/helpbruce/hide.menu.github.io/blob/main/img/322.png?raw=true');
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  border-radius: 10px;
+  text-align: center;
+  z-index: 2000;
+  max-width: 600px;
+  width: 100%;
+}
+
+.order-summary-modal h2 {       /* Your Order */       
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-family: 'Noe Display', serif;
+}
+
+.order-summary-item {
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-family: 'Noe Display', serif;
+  text-align: center;
+}
+
+.order-summary-item h4 {                      /* Названия блюд в Your Order */            
+  margin-top: 20px;
+  margin: 0;
+  font-size: 18px;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic; 
+  font-weight: lighter; 
+}
+
+.order-summary-item p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  color: #666;
+  
+}
+
+.order-summary-modal button {      /* Pay */            
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0);
+  color: #000000;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 0px;
+  border: 1px solid black;
+  border-top: none; 
+  border-left: none; 
+  border-right: none; 
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  font-style: italic; 
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1500;
+}
+
+.menu-item.dimmed h4, .menu-item.dimmed p {
+  opacity: 0.5;
+}
+
+.menu-item.selected {
+  background-color: rgba(159, 153, 91, 0.1);
+  color: #000000;
+  border-radius: 15px
+}
+.proceed-to-order-button {
+  padding: 10px 20px;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  font-style: italic; /* Курсив */
+}
+
+.proceed-to-order-button:hover {
+  background-color: #555;
+}
+
+.total-price {
+  font-family: 'Parisienne', cursive; /* Или любой другой шрифт по вашему выбору */
+  font-size: 22px; /* Размер шрифта */
+  color: #444; /* Цвет текста */
+  font-weight: bold; /* Вес шрифта */
+  font-style: italic; /* Курсив */
+  margin-top: 20px; /* Отступ сверху */
+  margin-bottom: 20px; /* Отступ снизу */
+}
+
+
+/* Или любой другой шрифт по вашему выбору *//* Или любой другой шрифт по вашему выбору *//* Или любой другой шрифт по вашему выбору */
+
+#invoice-POS{
+  box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
+  padding: 2mm;
+  margin: 0 auto;
+  width: 120mm; /* Увеличение ширины чека */
+  background: #FFF;
+}
+
+::selection {background: #f31544; color: #FFF;}
+::moz-selection {background: #f31544; color: #FFF;}
+h1 {
+  font-size: 1.5em;
+  color: #222;
+}
+h2 {
+  font-size: .9em;
+}
+h3 {
+  font-size: 1.2em;
+  font-weight: 300;
+  line-height: 2em;
+}
+p {
+  font-size: .7em;
+  color: #666;
+  line-height: 1.2em;
+}
+
+#top, #mid, #bot {
+  border-bottom: 1px solid #EEE;
+}
+
+#top {min-height: 30px;} /* Уменьшение минимальной высоты */
+#mid {min-height: 30px;} 
+#bot {min-height: 30px;}
+
+#top .logo {
+  height: 60px;
+  width: 60px;
+  background: url(http://michaeltruong.ca/images/logo1.png) no-repeat;
+  background-size: 60px 60px;
+}
+
+.clientlogo {
+  float: left;
+  height: 60px;
+  width: 60px;
+  background: url(http://michaeltruong.ca/images/client.jpg) no-repeat;
+  background-size: 60px 60px;
+  border-radius: 50px;
+}
+.info {
+  display: block;
+  margin-left: 0;
+}
+.title {
+  float: right;
+}
+.title p {text-align: right;}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+td {
+  padding: 4px;
+}
+.tabletitle {
+  font-size: .7em;
+  background: #EEE;
+}
+.service {border-bottom: 1px solid #EEE;}
+.item {width: 24mm;}
+.itemtext {font-size: .7em;}
+
+#legalcopy {
+  margin-top: 5mm;
+}
+
+
+.tabletitle h2, .tableitem p, .payment h2 {
+  font-size: 0.7em; /* Уменьшение размера шрифта */
+}
+
+#invoice-POS h2 {
+  font-size: 1em; /* Размер шрифта для заголовков внутри чека */
+}
+
+#invoice-POS .tabletitle, #invoice-POS .payment {
+  padding: 4px 0; /* Уменьшение отступов */
+}
+
+#invoice-POS table {
+  width: 100%; /* Убедимся, что таблица занимает всю ширину контейнера */
+}
+
+#invoice-POS td {
+  padding: 4px; /* Уменьшение отступов внутри ячеек таблицы */
+}
+
+
+
